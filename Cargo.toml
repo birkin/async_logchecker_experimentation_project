@@ -7,6 +7,6 @@ edition = "2021"
 
 [dependencies]
 chrono = "0.4.19"
-serde = { version = "1.0.130", features = ["derive"] }
 envy = "0.4.2"
+serde = { version = "1.0.130", features = ["derive"] }
 tokio = { version = "1.14", features = ["full"] }

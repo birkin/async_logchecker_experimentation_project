@@ -1,9 +1,9 @@
 // use chrono::{DateTime, Local};
-use chrono::{Local};
+use chrono::Local;
 use serde::Deserialize;
 use std::env;
 // use tokio::time::{Duration, Instant};
-use tokio::time::{Instant};
+use tokio::time::Instant;
 
 #[derive(Deserialize, Debug)]
 struct Config {

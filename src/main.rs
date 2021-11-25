@@ -1,7 +1,9 @@
-use chrono::{DateTime, Local};
+// use chrono::{DateTime, Local};
+use chrono::{Local};
 use serde::Deserialize;
 use std::env;
-use tokio::time::{Duration, Instant};
+// use tokio::time::{Duration, Instant};
+use tokio::time::{Instant};
 
 #[derive(Deserialize, Debug)]
 struct Config {
@@ -40,7 +42,7 @@ async fn main() {
 
     /* load settings */
     let config = Config::new();
-    // println!("config, ``{:?}``", config);
+    println!("config, ``{:?}``", config);
 }
 
 // fn main() {

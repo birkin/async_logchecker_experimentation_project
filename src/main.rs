@@ -1,7 +1,7 @@
-// use chrono::{DateTime, Local};
 use chrono::Local;
-// use tokio::time::{Duration, Instant};
+// use chrono::{DateTime, Local};
 use tokio::time::Instant;
+// use tokio::time::{Duration, Instant};
 
 use logchecker_project::Config;
 
@@ -10,7 +10,6 @@ async fn main() {
     /* start */
     let start_time = Instant::now();
     println!("start_time, ``{:?}``", start_time);
-    // let local_time: DateTime<Local> = Local::now().await?;  // used for logging
     let local_time = Local::now(); // used for logging
     println!("local_time, ``{:?}``", local_time);
     println!("Hello, world!");
@@ -19,7 +18,3 @@ async fn main() {
     let config = Config::new();
     println!("config, ``{:?}``", config);
 }
-
-// fn main() {
-//     println!("Hello, world!");
-// }

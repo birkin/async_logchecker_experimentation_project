@@ -13,8 +13,6 @@ async fn main() {
     let start_time = Instant::now();
     println!("start_time, ``{:?}``", start_time);
     let local_time = Local::now(); // used for logging
-                                   // println!("local_time, ``{:?}``", local_time);
-                                   // println!("Hello, world!");
 
     /* load settings */
     let config = Config::new();

@@ -2,11 +2,8 @@
 extern crate log;
 
 use chrono::Local;
-// use chrono::{DateTime, Local};
-use tokio::time::Instant;
-// use tokio::time::{Duration, Instant};
-
 use env_logger::{Builder, Target};
+use tokio::time::{Duration, Instant};
 
 use logchecker_project::Config;
 
@@ -31,7 +28,7 @@ async fn main() {
         "\n\n-------\n`starting logchecker_project code at, ``{:?}``",
         local_time.to_rfc3339()
     );
-    info!("{}", msg)
+    info!("{}", msg);
 
     /* load log_paths.json file (sync) */
 
@@ -40,4 +37,8 @@ async fn main() {
     /* process each candidate file, saving output (async) */
 
     /* massage output and email (sync) */
+
+    /* output elapsed time */
+    let duration: Duration = start_time.elapsed();
+    info!("{}", format!("elapsed-time, ``{:?}``", duration));
 }

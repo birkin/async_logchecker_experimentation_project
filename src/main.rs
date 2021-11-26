@@ -27,11 +27,17 @@ async fn main() {
     let mut log_builder = Builder::from_default_env();
     log_builder.target(Target::Stdout);
     log_builder.init();
-    // info!( "{}", format!("\n\n-------\n`starting logchecker_project code at, ``{:?}``", local_time.to_rfc3339()) );
     let msg: String = format!(
         "\n\n-------\n`starting logchecker_project code at, ``{:?}``",
         local_time.to_rfc3339()
     );
-    // let z: () = msg;  // yields: found struct `String`
     info!("{}", msg)
+
+    /* load log_paths.json file (sync) */
+
+    /* get list of candidate files (async) */
+
+    /* process each candidate file, saving output (async) */
+
+    /* massage output and email (sync) */
 }

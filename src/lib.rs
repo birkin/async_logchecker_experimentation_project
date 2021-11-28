@@ -1,6 +1,8 @@
 use serde::Deserialize;
 use std::env;
 
+/* ------- Config ------- */
+
 #[derive(Deserialize, Debug)]
 pub struct Config {
     log_level: String,
@@ -24,4 +26,12 @@ impl Config {
             Err(error) => panic!("{:#?}", error), // this shows the missing envar
         }
     }
+}
+
+/* ------- PathsSource ------- */
+
+#[derive(Deserialize)]
+pub struct PathsSource {
+    pub directory_paths: Vec<String>,
+    pub log_paths: Vec<String>,
 }

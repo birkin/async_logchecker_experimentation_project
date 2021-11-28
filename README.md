@@ -1,3 +1,10 @@
+### Next...
+
+- create a PathsSource object by loading the json into the PathsSource struct
+
+---
+
+
 ### Conceptual plan...
 
 - Go through list of folders in the settings file. For each folder...

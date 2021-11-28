@@ -36,7 +36,6 @@ async fn main() {
 
     /* load log_paths.json file (sync) */
     let log_paths_obj: std::vec::Vec<serde_json::value::Value> = load_log_paths( &config.logs_json_file_path );
-    debug!( "{}", format!("log_paths_obj, ``{:?}``", log_paths_obj) );
 
     /* get list of candidate files (async) */
 
@@ -91,5 +90,5 @@ fn load_log_paths( logs_json_file_path: &std::string::String ) -> std::vec::Vec<
 
 
 
-    return real_array;
+    return real_dir_paths_array;
 }

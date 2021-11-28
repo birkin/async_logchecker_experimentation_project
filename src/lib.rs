@@ -4,7 +4,7 @@ use std::env;
 #[derive(Deserialize, Debug)]
 pub struct Config {
     log_level: String,
-    logs_json_file_path: String,
+    pub logs_json_file_path: String,
 }
 
 impl Config {

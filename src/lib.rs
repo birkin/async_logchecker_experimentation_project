@@ -6,7 +6,7 @@ use std::fs;
 use serde::Deserialize;
 use std::env;
 
-/* ------- Config ------- */
+/* --- Config -------------------------------- */
 
 #[derive(Deserialize, Debug)]
 pub struct Config {
@@ -33,33 +33,9 @@ impl Config {
     }
 }
 
-/* ------- PathsSource ------- */
+/* ------- end Config */
 
-
-
-// fn load_log_paths( logs_json_file_path: &std::string::String ) -> String {
-//     /*  Loads json list of paths into an iterable array.
-//         Called by: main()  */
-
-//     // --- read file ---
-//     let jsn: String = fs::read_to_string( &logs_json_file_path ).unwrap_or_else(|error| {
-//         panic!("Problem reading the json-file -- ``{:?}``", error);
-//     });
-//     // println!("\njsn, ``{:?}``", jsn);  // yields: jsn, ``"[\n  {\n    \"path\": \"/foo/the.log\"\n  },\n  {\n    \"path\": \"/path/to/logs/addto_refworks_logs/addto_refworks.log\"\n  },\n  {\n    \"path\": \"/path/to/logs/annex_counts_logs/annex_counts.log\"\n  }\n]\n"``
-//     // let zz: () = jsn;  // yields: found struct `std::string::String`
-
-//     // --- turn String into json-object ---
-//     let ps: PathsSource = serde_json::from_str(&jsn).unwrap_or_else(|error| {
-//         panic!("Problem converting the json-file to an object -- maybe invalid json? -- ``{:?}``", error);
-//     });
-//     debug!( "{}", format!("ps, ``{:?}``", ps) );
-//     debug!( "{}", format!("ps.dir_paths, ``{:?}``", ps.dir_paths) );
-
-
-//     return "foo".to_string();
-// }
-
-
+/* --- PathsSource --------------------------- */
 
 #[derive(Deserialize, Debug)]
 pub struct PathsSource {
@@ -68,29 +44,27 @@ pub struct PathsSource {
 }
 
 impl PathsSource {
-    pub fn load_log_paths( logs_json_file_path: &std::string::String ) -> PathsSource {
+    pub fn load_log_paths(logs_json_file_path: &std::string::String) -> PathsSource {
         /*  Loads json list of paths into an iterable array.
-            Called by: main()  */
+        Called by: main()  */
 
-        // --- read file ---
-        let jsn: String = fs::read_to_string( &logs_json_file_path ).unwrap_or_else(|error| {
+        // read json file -----------------------
+        let jsn: String = fs::read_to_string(&logs_json_file_path).unwrap_or_else(|error| {
             panic!("Problem reading the json-file -- ``{:?}``", error);
         });
-        // println!("\njsn, ``{:?}``", jsn);  // yields: jsn, ``"[\n  {\n    \"path\": \"/foo/the.log\"\n  },\n  {\n    \"path\": \"/path/to/logs/addto_refworks_logs/addto_refworks.log\"\n  },\n  {\n    \"path\": \"/path/to/logs/annex_counts_logs/annex_counts.log\"\n  }\n]\n"``
-        // let zz: () = jsn;  // yields: found struct `std::string::String`
 
-        // --- turn String into json-object ---
+        // create PathsSource-object ------------
         let ps: PathsSource = serde_json::from_str(&jsn).unwrap_or_else(|error| {
-            panic!("Problem converting the json-file to an object -- maybe invalid json? -- ``{:?}``", error);
+            panic!(
+                "Problem converting the json-file to an object -- maybe invalid json? -- ``{:?}``",
+                error
+            );
         });
-        debug!( "{}", format!("ps, ``{:?}``", ps) );
-        debug!( "{}", format!("ps.dir_paths, ``{:?}``", ps.dir_paths) );
+        debug!("{}", format!("ps, ``{:?}``", ps));
+        debug!("{}", format!("ps.dir_paths, ``{:?}``", ps.dir_paths)); // confirms struct attributes are accessible
 
-
-        // return "foo".to_string();
         return ps;
     }
-
-
 }
 
+/* ------- end PathsSource */

@@ -9,16 +9,16 @@ use tokio::time::{Duration, Instant};
 
 #[tokio::main]
 async fn main() {
-    /* start */
+    /* start --------------------------------- */
     let start_time = Instant::now();
     println!("start_time, ``{:?}``", start_time);
     let local_time = Local::now(); // used for logging
 
-    /* load settings */
+    /* load settings ------------------------- */
     let config: Config = Config::new();
     println!("config, ``{:?}``", config);
 
-    /* setup logging */
+    /* setup logging ------------------------- */
     let mut log_builder = Builder::from_default_env();
     log_builder.target(Target::Stdout);
     log_builder.init();
@@ -28,15 +28,15 @@ async fn main() {
     );
     info!("{}", msg);
 
-    /* load log_paths.json file (sync) */
+    /* load log_paths.json file (sync) ------- */
     let log_paths_obj: PathsSource = PathsSource::load_log_paths(&config.logs_json_file_path);
     debug!("{}", format!("log_paths_obj, ``{:?}``", log_paths_obj));
 
-    /* get list of candidate files (async) */
+    /* get list of candidate files (async) --- */
 
-    /* process each candidate file, saving output (async) */
+    /* process each candidate file (async) --- */
 
-    /* massage output and email (sync) */
+    /* massage output and email (sync) ------- */
 
     /* output elapsed time */
     let duration: Duration = start_time.elapsed();

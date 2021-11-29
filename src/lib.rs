@@ -68,7 +68,7 @@ pub struct PathsSource {
 }
 
 impl PathsSource {
-    pub fn load_log_paths( logs_json_file_path: &std::string::String ) -> String {
+    pub fn load_log_paths( logs_json_file_path: &std::string::String ) -> PathsSource {
         /*  Loads json list of paths into an iterable array.
             Called by: main()  */
 
@@ -87,8 +87,8 @@ impl PathsSource {
         debug!( "{}", format!("ps.dir_paths, ``{:?}``", ps.dir_paths) );
 
 
-        return "foo".to_string();
-        // return ps;
+        // return "foo".to_string();
+        return ps;
     }
 
 

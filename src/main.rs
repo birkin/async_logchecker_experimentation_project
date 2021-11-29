@@ -9,11 +9,11 @@ use logchecker_project::Config;
 use logchecker_project::PathsSource;
 
 
-use std::fs;
-use serde_json::{Value};
+// use std::fs;
+// use serde_json::{Value};
 
 
-use serde::Deserialize;
+// use serde::Deserialize;
 
 
 
@@ -26,7 +26,7 @@ async fn main() {
     let local_time = Local::now(); // used for logging
 
     /* load settings */
-    let config = Config::new();
+    let config: Config = Config::new();
     println!("config, ``{:?}``", config);
 
     /* setup logging */
@@ -41,7 +41,9 @@ async fn main() {
 
     /* load log_paths.json file (sync) */
     // let log_paths_obj: String = load_log_paths( &config.logs_json_file_path );
-    let log_paths_obj: String = PathsSource::load_log_paths( &config.logs_json_file_path );
+    let log_paths_obj: PathsSource = PathsSource::load_log_paths( &config.logs_json_file_path );
+    // let zz: () = log_paths_obj;
+    debug!( "{}", format!("log_paths_obj, ``{:?}``", log_paths_obj) );
 
     /* get list of candidate files (async) */
 

@@ -30,8 +30,8 @@ impl Config {
 
 /* ------- PathsSource ------- */
 
-#[derive(Deserialize)]
-pub struct PathsSource {
-    pub directory_paths: Vec<String>,
-    pub log_paths: Vec<String>,
-}
+// #[derive(Deserialize)]
+// pub struct PathsSource {
+//     pub directory_paths: Vec<String>,
+//     pub log_paths: Vec<String>,
+// }

@@ -12,6 +12,10 @@ use std::fs;
 use serde_json::{Value};
 
 
+use serde::Deserialize;
+
+
+
 
 #[tokio::main]
 async fn main() {
@@ -35,7 +39,8 @@ async fn main() {
     info!("{}", msg);
 
     /* load log_paths.json file (sync) */
-    let log_paths_obj: std::vec::Vec<serde_json::value::Value> = load_log_paths( &config.logs_json_file_path );
+    // let log_paths_obj: std::vec::Vec<serde_json::value::Value> = load_log_paths( &config.logs_json_file_path );
+    let log_paths_obj: String = load_log_paths( &config.logs_json_file_path );
 
     /* get list of candidate files (async) */
 
@@ -50,7 +55,8 @@ async fn main() {
 
 
 
-fn load_log_paths( logs_json_file_path: &std::string::String ) -> std::vec::Vec<serde_json::value::Value> {
+// fn load_log_paths( logs_json_file_path: &std::string::String ) -> std::vec::Vec<serde_json::value::Value> {
+fn load_log_paths( logs_json_file_path: &std::string::String ) -> String {
     /*  Loads json list of paths into an iterable array.
         Called by: main()  */
 
@@ -62,33 +68,47 @@ fn load_log_paths( logs_json_file_path: &std::string::String ) -> std::vec::Vec<
     // let zz: () = jsn;  // yields: found struct `std::string::String`
 
     // --- turn String into json-object ---
-    let paths_obj: Value = serde_json::from_str(&jsn).unwrap_or_else(|error| {
-        panic!("Problem converting the json-file to an object -- maybe invalid json? -- ``{:?}``", error);
-    });
-    println!("\npaths_obj, ``{:?}``", paths_obj);  // yields: paths_obj, ``Object({"dir_paths": Array([String("foo1"), String("foo2")]), "file_paths": Array([String("bar1"), String("bar2")])})``
+    // let paths_obj: Value = serde_json::from_str(&jsn).unwrap_or_else(|error| {
+    //     panic!("Problem converting the json-file to an object -- maybe invalid json? -- ``{:?}``", error);
+    // });
+    // println!("\npaths_obj, ``{:?}``", paths_obj);  // yields: paths_obj, ``Object({"dir_paths": Array([String("foo1"), String("foo2")]), "file_paths": Array([String("bar1"), String("bar2")])})``
     // println!("\npaths_obj, ``{:?}``", paths_obj); // yields: paths_obj, ``Array([Object({"path": String("/foo/the.log")}), Object({"path": String("/path/to/logs/addto_refworks_logs/addto_refworks.log")}), Object({"path": String("/path/to/logs/annex_counts_logs/annex_counts.log")})])``
     // let zz: () = paths_obj;  // yields: found enum `Value`
     // let zz: () = paths_obj;  // yields: found enum `serde_json::value::Value`
 
-    let dir_paths: &Value = &paths_obj["dir_paths"];
-    // let zz: () = dir_paths;  // yields: found `&Value`
-    println!("dir_paths, ``{:?}``", dir_paths);
 
-    let dir_paths_array = dir_paths.as_array().unwrap_or_else(|| {
-        panic!("Problem handling dir_paths_array.");
+
+    // let p: Person = serde_json::from_str(data)?;
+
+    let ps: PathsSource = serde_json::from_str(&jsn).unwrap_or_else(|error| {
+        panic!("Problem converting the json-file to an object -- maybe invalid json? -- ``{:?}``", error);
     });
-    // let zz: () = dir_paths_array;  // yields: found `&Vec<Value>`
-    debug!( "{}", format!("dir_paths_array, ``{:?}``", dir_paths_array) );
-
-    let real_dir_paths_array: std::vec::Vec<serde_json::value::Value> = dir_paths_array.to_vec();
-    // let zz: () = real_dir_paths_array;  // yields: found struct `Vec`
-    debug!( "{}", format!("real_dir_paths_array, ``{:?}``", real_dir_paths_array) );
+    debug!( "{}", format!("ps, ``{:?}``", ps) );
 
 
+    // let dir_paths: &Value = &paths_obj["dir_paths"];
+    // // let zz: () = dir_paths;  // yields: found `&Value`
+    // println!("dir_paths, ``{:?}``", dir_paths);
 
+    // let dir_paths_array = dir_paths.as_array().unwrap_or_else(|| {
+    //     panic!("Problem handling dir_paths_array.");
+    // });
+    // // let zz: () = dir_paths_array;  // yields: found `&Vec<Value>`
+    // debug!( "{}", format!("dir_paths_array, ``{:?}``", dir_paths_array) );
 
+    // let real_dir_paths_array: std::vec::Vec<serde_json::value::Value> = dir_paths_array.to_vec();
+    // // let zz: () = real_dir_paths_array;  // yields: found struct `Vec`
+    // debug!( "{}", format!("real_dir_paths_array, ``{:?}``", real_dir_paths_array) );
 
+    // return real_dir_paths_array;
 
-
-    return real_dir_paths_array;
+    return "foo".to_string();
 }
+
+
+#[derive(Deserialize, Debug)]
+pub struct PathsSource {
+    pub dir_paths: Vec<String>,
+    pub file_paths: Vec<String>,
+}
+

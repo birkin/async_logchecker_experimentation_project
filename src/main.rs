@@ -3,10 +3,10 @@ extern crate log;
 
 use chrono::Local;
 use env_logger::{Builder, Target};
+use logchecker_project::evaluate_dirs;
 use logchecker_project::Config;
 use logchecker_project::PathsSource;
 use tokio::time::{Duration, Instant};
-use logchecker_project::evaluate_dirs;
 
 #[tokio::main]
 async fn main() {
@@ -41,10 +41,11 @@ async fn main() {
 
     // let z: () = log_paths_obj.dir_paths;
     let dir_paths: Vec<String> = log_paths_obj.dir_paths;
-    let mut candidates_from_dirs: Vec<String> = evaluate_dirs( dir_paths ).await;
-    debug!("{}", format!("candidates_from_dirs, ``{:?}``", candidates_from_dirs));
-
-
+    let mut candidates_from_dirs: Vec<String> = evaluate_dirs(dir_paths).await;
+    debug!(
+        "{}",
+        format!("candidates_from_dirs, ``{:?}``", candidates_from_dirs)
+    );
 
     /* process each candidate file (async) --- */
 

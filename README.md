@@ -1,7 +1,7 @@
 ### Next...
 
 √ create a PathsSource object by loading the json into the PathsSource struct
-- for each directory, make a list of eligible log-files.
+- insert into evaluate_dirs(): for each directory, make a list of eligible log-files.
     - time that procedurally
     - time that asynchronously
 

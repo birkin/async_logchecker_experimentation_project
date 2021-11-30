@@ -60,8 +60,8 @@ impl PathsSource {
                 error
             );
         });
-        debug!("{}", format!("ps, ``{:?}``", ps));
-        debug!("{}", format!("ps.dir_paths, ``{:?}``", ps.dir_paths)); // confirms struct attributes are accessible
+        debug!("ps, ``{:?}``", ps);
+        debug!("ps.dir_paths, ``{:?}``", ps.dir_paths); // confirms struct attributes are accessible
 
         return ps;
     }
@@ -72,10 +72,7 @@ impl PathsSource {
 /* --- evaluate dir candidates --------------- */
 
 pub async fn evaluate_dirs(dir_paths_reference: Vec<String>) -> Vec<String> {
-    debug!(
-        "{}",
-        format!("dir_paths_reference, ``{:?}``", dir_paths_reference)
-    );
+    debug!("dir_paths_reference, ``{:?}``", dir_paths_reference);
     let mut candidates: Vec<String> = Vec::new();
     candidates.push("test".to_string());
     return candidates;

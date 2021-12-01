@@ -1,10 +1,10 @@
 #[macro_use]
 extern crate log;
 
-use std::fs;
-
 use serde::Deserialize;
 use std::env;
+use std::fs;
+use tokio::sync::mpsc;
 
 /* --- Config -------------------------------- */
 
@@ -73,7 +73,19 @@ impl PathsSource {
 
 pub async fn evaluate_dirs(dir_paths_reference: Vec<String>) -> Vec<String> {
     debug!("dir_paths_reference, ``{:?}``", dir_paths_reference);
+
+    let element_count: usize = dir_paths_reference.len();
+    debug!("element_count, ``{}``", element_count );
+
+    let (tx, mut rx) = mpsc::channel( 100 );
+
+    for dir_path in dir_paths_reference {
+        debug!("dir_path, ``{}``", dir_path);
+
+    }
+
     let mut candidates: Vec<String> = Vec::new();
+
     candidates.push("test".to_string());
     return candidates;
 }

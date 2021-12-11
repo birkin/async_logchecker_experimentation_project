@@ -4,7 +4,7 @@ extern crate log;
 use serde::Deserialize;
 use std::env;
 use std::fs;
-use tokio::sync::mpsc;
+// use tokio::sync::mpsc;
 
 /* --- Config -------------------------------- */
 
@@ -72,16 +72,24 @@ impl PathsSource {
 /* --- evaluate dir candidates --------------- */
 
 pub async fn evaluate_dirs(dir_paths_reference: Vec<String>) -> Vec<String> {
-    debug!("dir_paths_reference, ``{:?}``", dir_paths_reference);
+    /* Takes directory-paths Vec and for each directory-path:
+        - gets all the *.log files
+        - examines each file's last-updated time-stamp
+        - adds to a "candidates" Vec the files updated in the last 24 hours
+        It then returns the candidates Vec
+    */
+    debug!(
+        "in evaluate_dirs(); dir_paths_reference, ``{:?}``",
+        dir_paths_reference
+    );
 
     let element_count: usize = dir_paths_reference.len();
-    debug!("element_count, ``{}``", element_count );
+    debug!("in evaluate_dirs(); element_count, ``{}``", element_count);
 
-    let (tx, mut rx) = mpsc::channel( 100 );
+    // let (tx, mut rx) = mpsc::channel( 100 );
 
     for dir_path in dir_paths_reference {
-        debug!("dir_path, ``{}``", dir_path);
-
+        debug!("in evaluate_dirs(); dir_path, ``{}``", dir_path);
     }
 
     let mut candidates: Vec<String> = Vec::new();

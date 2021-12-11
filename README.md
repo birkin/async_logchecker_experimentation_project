@@ -2,6 +2,7 @@
 
 √ create a PathsSource object by loading the json into the PathsSource struct
 - read <https://ryhl.io/blog/async-what-is-blocking/> and try to get the failing mpsc line to run.
+- work on evaluate_dirs()
 - insert into evaluate_dirs(): for each directory, make a list of eligible log-files.
     - time that procedurally
     - time that asynchronously

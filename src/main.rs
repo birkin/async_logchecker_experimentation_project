@@ -34,15 +34,14 @@ async fn main() {
     debug!("log_paths_obj, ``{:?}``", log_paths_obj);
 
     /* get list of candidate files (async) --- */
-
-    // let mut candidates: Vec<String> = Vec::new();
-    // debug!( "{}", format!("candidates, ``{:?}``", candidates) );
-    // for dir_path in log_paths_obj.dir_paths {  // dir_path is a String
-    //     debug!("{}", format!("dir_path, ``{:?}``", dir_path));
-    // let z: () = log_paths_obj.dir_paths;
-
     let dir_paths: Vec<String> = log_paths_obj.dir_paths;
-    let mut candidates_from_dirs: Vec<String> = evaluate_dirs(dir_paths).await;
+    // debug!( "{}", format!("dir_paths, ``{:?}``", dir_paths) );
+    // let z: () = log_paths_obj.dir_paths; // yields: found struct `Vec<String>`
+    // for dir_path in dir_paths {  // dir_path is a String
+    //     debug!("{}", format!("dir_path, ``{:?}``", dir_path));
+    // }
+
+    let candidates_from_dirs: Vec<String> = evaluate_dirs(dir_paths).await;
     debug!("candidates_from_dirs, ``{:?}``", candidates_from_dirs);
 
     /* process each candidate file (async) --- */
